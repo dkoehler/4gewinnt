@@ -1,4 +1,4 @@
-﻿namespace _4gewinnt
+﻿namespace customControls
 {
     partial class gamepanel
     {
@@ -28,13 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // gamepanel
-            // 
-            this.Click += new System.EventHandler(this.gamepanel_Click);
-            this.ResumeLayout(false);
-
+            components = new System.ComponentModel.Container();
         }
 
         #endregion

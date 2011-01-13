@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace _4gewinnt
+namespace customControls
 {
     public partial class gamepanel : Panel
     {
@@ -16,8 +16,8 @@ namespace _4gewinnt
         public gamepanel()
         {
             InitializeComponent();
-            abFields = new bool[iRows*iColumns];
-            this.Size = new Size(iColumns*iFieldWidth, iRows*iFieldHeight);
+            abFields = new bool[iRows * iColumns];
+            this.Size = new Size(iColumns * iFieldWidth, iRows * iFieldHeight);
             objBmp = new Bitmap(this.Width, this.Height);
             objGraphic = Graphics.FromImage(objBmp);
         }
@@ -35,7 +35,7 @@ namespace _4gewinnt
         }
 
         // properties
-        // unsigned int won't work because for stupid compiler, lol
+        // unsigned int won't work because of stupid compiler, lol
         int iRows = 6;
         int iColumns = 7;
         int iFieldHeight = 50;
@@ -53,11 +53,13 @@ namespace _4gewinnt
         //int iInnerFieldWidth = 35;
 
         bool[] abFields;
-        FieldType ftType;
+        bool bDrawGrid;
+
+        //FieldType ftType;
         SolidBrush objBrush = new SolidBrush(Color.Black);
 
-        public event EventHandler evtInsertedStone;
-        public event EventHandler evtGameOver;
+        //public event EventHandler evtInsertedStone;
+        //public event EventHandler evtGameOver;
 
         private Bitmap objBmp;
         private Graphics objGraphic;
@@ -71,6 +73,19 @@ namespace _4gewinnt
             set
             {
                 objBrush.Color = value;
+            }
+        }
+
+        public bool showGridlines
+        {
+            get
+            {
+                return bDrawGrid;
+            }
+            set
+            {
+                bDrawGrid = value;
+                this.Refresh(); // On change -> refresh control
             }
         }
 
@@ -89,11 +104,20 @@ namespace _4gewinnt
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
+
+            this.Size = new Size(iColumns * iFieldWidth, iRows * iFieldHeight);
+
+            if (bDrawGrid)
+                DrawGrid(pe.Graphics);
+            pe.Graphics.DrawImage(objBmp, 0, 0);
         }
 
-        private void gamepanel_Click(object sender, EventArgs e)
+        public void ClearGrid()
         {
+            Graphics objClearGraph = this.CreateGraphics();
+            objClearGraph.Clear(this.BackColor);
 
+            DrawGrid(this.CreateGraphics());
         }
     }
 }

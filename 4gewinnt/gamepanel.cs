@@ -34,7 +34,7 @@ namespace _4gewinnt
             objGraphic = Graphics.FromImage(objBmp);
         }
 
-        // propertys
+        // properties
         // unsigned int won't work because for stupid compiler, lol
         int iRows = 6;
         int iColumns = 7;

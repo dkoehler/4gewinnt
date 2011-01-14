@@ -1,0 +1,6 @@
+
+*.suo
+/customControls/obj
+/customControls/bin
+/4gewinnt/obj
+/4gewinnt/bin

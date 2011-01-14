@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace customControls
 {
-    public partial class gamepanel : Panel
+    public partial class gamepanel : UserControl
     {
         // constuctor
 

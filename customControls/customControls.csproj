@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gamepanel.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="gamepanel.Designer.cs">
       <DependentUpon>gamepanel.cs</DependentUpon>

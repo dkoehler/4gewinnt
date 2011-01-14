@@ -12,7 +12,6 @@ namespace customControls
     public partial class gamepanel : UserControl
     {
         #region constuctors
-        // constuctor
 
         public gamepanel()
         {
@@ -39,7 +38,6 @@ namespace customControls
 
         #region properties
 
-        // properties
         // unsigned int won't work because of stupid compiler, lol
         int iRows = 6;
         int iColumns = 7;
@@ -165,7 +163,6 @@ namespace customControls
 
         #region privateMethods
 
-        // methods
         private void DrawGrid(Graphics objGraph)
         {
             this.BorderStyle = BorderStyle.Fixed3D;

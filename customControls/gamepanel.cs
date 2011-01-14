@@ -11,6 +11,7 @@ namespace customControls
 {
     public partial class gamepanel : UserControl
     {
+        #region constuctors
         // constuctor
 
         public gamepanel()
@@ -33,6 +34,10 @@ namespace customControls
             objBmp = new Bitmap(this.Width, this.Height);
             objGraphic = Graphics.FromImage(objBmp);
         }
+
+        #endregion
+
+        #region properties
 
         // properties
         // unsigned int won't work because of stupid compiler, lol
@@ -141,17 +146,9 @@ namespace customControls
             }
         }
 
-        // methods
-        private void DrawGrid(Graphics objGraph)
-        {
-            this.BorderStyle = BorderStyle.Fixed3D;
+        #endregion
 
-            for (int i = iFieldHeight; i < (iRows * iFieldHeight); i += iFieldHeight)
-                objGraph.DrawLine(new Pen(Brushes.Black), new Point(0, i), new Point(this.Width, i));
-
-            for (int i = iFieldWidth; i < (iColumns * iFieldWidth); i += iFieldWidth)
-                objGraph.DrawLine(new Pen(Brushes.Black), new Point(i, 0), new Point(i, this.Height));
-        }
+        #region OnHandlers
 
         protected override void OnPaint(PaintEventArgs pe)
         {
@@ -164,6 +161,26 @@ namespace customControls
             pe.Graphics.DrawImage(objBmp, 0, 0);
         }
 
+        #endregion
+
+        #region privateMethods
+
+        // methods
+        private void DrawGrid(Graphics objGraph)
+        {
+            this.BorderStyle = BorderStyle.Fixed3D;
+
+            for (int i = iFieldHeight; i < (iRows * iFieldHeight); i += iFieldHeight)
+                objGraph.DrawLine(new Pen(Brushes.Black), new Point(0, i), new Point(this.Width, i));
+
+            for (int i = iFieldWidth; i < (iColumns * iFieldWidth); i += iFieldWidth)
+                objGraph.DrawLine(new Pen(Brushes.Black), new Point(i, 0), new Point(i, this.Height));
+        }
+
+        #endregion
+
+        #region publicMethods
+
         public void ClearGrid()
         {
             Graphics objClearGraph = this.CreateGraphics();
@@ -171,5 +188,7 @@ namespace customControls
 
             DrawGrid(this.CreateGraphics());
         }
+
+        #endregion
     }
 }

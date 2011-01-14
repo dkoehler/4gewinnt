@@ -89,6 +89,58 @@ namespace customControls
             }
         }
 
+        public int gridColumns
+        {
+            get
+            {
+                return iColumns;
+            }
+            set
+            {
+                iColumns = value;
+                this.Refresh();
+            }
+        }
+
+        public int gridRows
+        {
+            get
+            {
+                return iRows;
+            }
+            set
+            {
+                iRows = value;
+                this.Refresh();
+            }
+        }
+
+        public int gridFieldHeight
+        {
+            get
+            {
+                return iFieldHeight;
+            }
+            set
+            {
+                iFieldHeight = value;
+                this.Refresh();
+            }
+        }
+
+        public int gridFieldWidth
+        {
+            get
+            {
+                return iFieldWidth;
+            }
+            set
+            {
+                iFieldWidth = value;
+                this.Refresh();
+            }
+        }
+
         // methods
         private void DrawGrid(Graphics objGraph)
         {

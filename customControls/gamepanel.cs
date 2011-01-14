@@ -46,19 +46,17 @@ namespace customControls
 
         public enum FieldType
         {
-            BOX,
-            CROSS,
-            CIRCLE
+            CIRCLE,
+            BOX
         }
 
-        // for drawing selected fields in grid later...
-        //int iInnerFieldHeight = 35; 
-        //int iInnerFieldWidth = 35;
+        int iInnerFieldHeight = 35; 
+        int iInnerFieldWidth = 35;
 
         bool[] abFields;
         bool bDrawGrid;
 
-        //FieldType ftType;
+        FieldType ftType;
         SolidBrush objBrush = new SolidBrush(Color.Black);
 
         //public event EventHandler evtInsertedStone;
@@ -66,6 +64,18 @@ namespace customControls
 
         private Bitmap objBmp;
         private Graphics objGraphic;
+
+        public FieldType fieldFillType
+        {
+            get
+            {
+                return ftType;
+            }
+            set
+            {
+                ftType = value;
+            }
+        }
 
         public Color BrushColor
         {
@@ -159,6 +169,12 @@ namespace customControls
             pe.Graphics.DrawImage(objBmp, 0, 0);
         }
 
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            GetField(e.Location, objGraphic);
+        }
+
         #endregion
 
         #region privateMethods
@@ -176,14 +192,43 @@ namespace customControls
 
         #endregion
 
+        private void GetField(Point objPt, Graphics objGraph)
+        {
+            int x = objPt.X / iFieldWidth;
+            int y = objPt.Y / iFieldHeight;
+
+            int fieldNum = y * iColumns + x;
+
+            if (fieldNum < (iRows * iColumns) - iColumns && !abFields[fieldNum + iColumns] || abFields[fieldNum])
+                return;
+
+            Point objPts = new Point(x * iFieldWidth + iFieldWidth / 2 - iInnerFieldWidth / 2,
+                y * iFieldHeight + iFieldHeight / 2 - iInnerFieldHeight / 2);
+
+            if (ftType == FieldType.CIRCLE)
+                objGraph.FillEllipse(objBrush, new Rectangle(objPts, new Size(iInnerFieldWidth, iInnerFieldHeight)));
+            else
+                objGraph.FillRectangle(objBrush, new Rectangle(objPts, new Size(iInnerFieldWidth, iInnerFieldHeight)));
+
+            abFields[fieldNum] = true;
+
+            Graphics objNewGraph = this.CreateGraphics();
+            objNewGraph.DrawImage(objBmp, 0, 0);
+            objNewGraph.Dispose();
+        }
+
         #region publicMethods
 
-        public void ClearGrid()
+        // reset game grid
+        public void ResetGrid()
         {
             Graphics objClearGraph = this.CreateGraphics();
             objClearGraph.Clear(this.BackColor);
 
             DrawGrid(this.CreateGraphics());
+
+            for (int i = 0; i < abFields.Length; i++)
+                abFields[i] = false;
         }
 
         #endregion

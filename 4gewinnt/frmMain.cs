@@ -15,6 +15,20 @@ namespace _4gewinnt
         public frmMain()
         {
             InitializeComponent();
+            this.nudCols.Value = (decimal)gpMain.gridColumns;
+            this.nudRows.Value = (decimal)gpMain.gridRows;
+        }
+
+        private void nudRows_ValueChanged(object sender, EventArgs e)
+        {
+            gpMain.gridRows = (int)nudRows.Value;
+            gpMain.ResetGrid();
+        }
+
+        private void nudCols_ValueChanged(object sender, EventArgs e)
+        {
+            gpMain.gridColumns = (int)nudCols.Value;
+            gpMain.ResetGrid();
         }
     }
 }

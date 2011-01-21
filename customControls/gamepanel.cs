@@ -190,8 +190,6 @@ namespace customControls
                 objGraph.DrawLine(new Pen(Brushes.Black), new Point(i, 0), new Point(i, this.Height));
         }
 
-        #endregion
-
         private void GetField(Point objPt, Graphics objGraph)
         {
             int x = objPt.X / iFieldWidth;
@@ -212,10 +210,16 @@ namespace customControls
 
             abFields[fieldNum] = true;
 
+            if (objBrush.Color == Color.Black)
+                objBrush.Color = Color.White;
+            else
+                objBrush.Color = Color.Black;
             Graphics objNewGraph = this.CreateGraphics();
             objNewGraph.DrawImage(objBmp, 0, 0);
             objNewGraph.Dispose();
         }
+
+        #endregion
 
         #region publicMethods
 
@@ -227,8 +231,9 @@ namespace customControls
 
             DrawGrid(this.CreateGraphics());
 
-            for (int i = 0; i < abFields.Length; i++)
-                abFields[i] = false;
+            //for (int i = 0; i < abFields.Length; i++)
+            //    abFields[i] = false;
+            abFields = new bool[iRows * iColumns];
         }
 
         #endregion

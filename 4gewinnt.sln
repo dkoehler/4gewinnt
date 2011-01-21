@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4gewinnt", "4gewinnt\4gewinnt.csproj", "{5DCECF9D-F4AD-4946-9FAF-7AC5D2509DAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "customControls", "customControls\customControls.csproj", "{2465B3CC-595C-4161-9DD7-B7D8568D9ED1}"
